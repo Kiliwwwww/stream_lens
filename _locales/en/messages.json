@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "StreamLens",
+    "description": "The extension name"
+  },
+  "extensionDescription": {
+    "message": "Inspect streaming API responses, events, headers, and JSON in DevTools.",
+    "description": "Short description shown by Chrome"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "StreamLens 流式响应查看器",
+    "description": "扩展程序名称"
+  },
+  "extensionDescription": {
+    "message": "在 DevTools 中查看流式 API 响应、事件、请求头及可折叠 JSON。",
+    "description": "Chrome 扩展程序简介"
+  }
+}

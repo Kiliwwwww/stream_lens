@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StreamLens</title>
+    <link rel="stylesheet" href="panel.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-mark" src="icons/icon.svg" alt="">
+        <div>
+          <div class="brand-name">StreamLens</div>
+          <div class="brand-caption" data-i18n="liveResponseInspector">Live response inspector</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <span id="tab-origin" class="origin-pill">Inspecting tab</span>
+        <button id="capture-toggle" class="button button-primary" type="button"><span class="status-dot"></span>Capture on</button>
+        <button id="clear-button" class="button button-quiet" type="button" data-i18n="clear">Clear</button>
+        <button id="export-button" class="button button-quiet" type="button" data-i18n="export">Export</button>
+      </div>
+    </header>
+
+    <section class="summary-bar">
+      <div class="summary-item"><span class="summary-label" data-i18n="requests">Requests</span><strong id="request-count">0</strong></div>
+      <div class="summary-item"><span class="summary-label" data-i18n="liveNow">Live now</span><strong id="live-count" class="live-number">0</strong></div>
+      <div class="summary-item"><span class="summary-label" data-i18n="captured">Captured</span><strong id="captured-bytes">0 B</strong></div>
+      <div class="summary-note" data-i18n="captureNote">Only the current tab is captured. Data stays in memory.</div>
+    </section>
+
+    <main class="workspace">
+      <aside class="request-sidebar">
+        <div class="sidebar-toolbar">
+          <div class="filter-tabs" role="tablist" data-i18n-aria-label="requestFilter">
+            <button class="filter-tab is-active" data-filter="all" type="button"><span data-i18n="all">All</span> <span id="all-count">0</span></button>
+            <button class="filter-tab" data-filter="live" type="button"><span data-i18n="live">Live</span> <span id="live-filter-count">0</span></button>
+          </div>
+          <input id="request-search" class="search-input" type="search" data-i18n-placeholder="filterRequests" data-i18n-aria-label="filterRequests" placeholder="Filter requests" aria-label="Filter requests">
+        </div>
+        <div id="request-list" class="request-list" aria-live="polite"></div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">/</div>
+          <strong data-i18n="waitingForStream">Waiting for a stream</strong>
+          <p data-i18n="triggerStream">Reload the page or trigger a fetch, SSE, or WebSocket request.</p>
+        </div>
+      </aside>
+
+      <section class="detail-pane">
+        <div id="detail-empty" class="detail-empty">
+          <div class="detail-empty-mark">+</div>
+          <h2 data-i18n="selectRequest">Select a request</h2>
+          <p data-i18n="streamAppears">Streaming responses will appear here as they arrive.</p>
+        </div>
+        <div id="detail-content" class="detail-content is-hidden">
+          <div class="request-heading">
+            <div class="request-heading-main">
+              <div class="request-type-line"><span id="detail-kind" class="type-badge">FETCH</span><span id="detail-state" class="state-badge">LIVE</span><span id="detail-status" class="status-code">pending</span></div>
+              <h1 id="detail-url">/</h1>
+              <div id="detail-meta" class="request-meta"></div>
+            </div>
+            <button id="copy-button" class="button button-quiet" type="button" data-i18n="copyResponse">Copy response</button>
+          </div>
+          <nav class="detail-tabs" role="tablist" data-i18n-aria-label="requestDetail">
+            <button class="detail-tab is-active" data-view="stream" type="button" data-i18n="eventStream">Event stream</button>
+            <button class="detail-tab" data-view="raw" type="button" data-i18n="rawText">Raw text</button>
+            <button class="detail-tab" data-view="headers" type="button" data-i18n="headers">Headers</button>
+          </nav>
+          <div class="detail-toolbar">
+            <span id="chunk-count">0 events</span>
+            <span id="stream-duration">0 ms</span>
+            <label class="autoscroll-toggle"><input id="autoscroll" type="checkbox" checked> <span data-i18n="autoScroll">Auto-scroll</span></label>
+          </div>
+          <div id="stream-view" class="view-panel"></div>
+          <pre id="raw-view" class="view-panel raw-view is-hidden"></pre>
+          <div id="headers-view" class="view-panel headers-view is-hidden"></div>
+        </div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="panel.js"></script>
+  </body>
+</html>

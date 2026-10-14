@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StreamLens</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup-shell">
+      <div class="popup-brand"><img class="popup-mark" src="icons/icon.svg" alt=""><span>StreamLens</span></div>
+      <p class="popup-copy" data-i18n="popupCopy">Watch streaming API responses in a focused DevTools panel.</p>
+      <div class="popup-status"><span id="status-dot" class="status-dot"></span><span id="status-text">Capture is on for this tab</span></div>
+      <button id="toggle" class="popup-button" type="button">Turn capture off</button>
+      <button id="open-devtools" class="popup-link" type="button" data-i18n="openDevtools">Open DevTools instructions</button>
+      <div id="message" class="popup-message"></div>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
